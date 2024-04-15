@@ -6,10 +6,11 @@ RSpec.describe Event do
     event = Event.new("South Pearl Street Farmers Market")
     expect(event).to be_a(Event)
     expect(event.name).to eq("South Pearl Street Farmers Market")
-    expect(event.food_trucks).to eq([0])
+    expect(event.food_trucks).to eq([])
   end
 
   it 'can add food trucks' do
+    event = Event.new("South Pearl Street Farmers Market")
     food_truck1 = FoodTruck.new("Rocky Mountain Pies")
     item1 = Item.new({name: 'Peach Pie (Slice)', price: "$3.75"})
     item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
@@ -27,11 +28,11 @@ RSpec.describe Event do
     event.add_food_truck(food_truck3)
 
     expect(event.food_trucks).to eq([food_truck1, food_truck2, food_truck3])
-    # expect(event.food_truck_names).to eq(["Rocky Mountain Pies", "Ba-Nom-a-Nom", "Palisade Peach Shack"])
-    # expect(event.food_trucks_that_sell(item1)).to eq(food_truck1, food_truck3)
-    # expect(event.food_trucks_that_sell(item4)).to eq(food_truck2)
+    expect(event.food_truck_names).to eq(["Rocky Mountain Pies", "Ba-Nom-a-Nom", "Palisade Peach Shack"])
+    expect(event.food_trucks_that_sell(item1)).to eq([food_truck1, food_truck3])
+    expect(event.food_trucks_that_sell(item4)).to eq([food_truck2])
     
-    # expect(food_truck1.potential_revenue).to eq(148.75)
+    expect(food_truck1.potential_revenue).to eq(148.75)
     # expect(food_truck2.potential_revenue).to eq(345.00)
     # expect(food_truck3.potential_revenue).to eq(243.75)
 
