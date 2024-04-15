@@ -9,5 +9,4 @@ class Item
     @price = info_hash[:price].gsub('$', '').to_f
   end
 
-  
 end
